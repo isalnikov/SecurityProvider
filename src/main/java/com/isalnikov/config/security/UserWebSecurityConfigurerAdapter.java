@@ -47,7 +47,9 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll();
+                .permitAll()
+                .and()
+                .logout().permitAll();
 
 
     }
