@@ -4,6 +4,8 @@
     Author     : Igor Salnikov  <igor.salnikov@stoloto.ru>
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.time.LocalTime"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,10 +17,21 @@
     </head>
     <body>
         <h1>index</h1>
+        User <%=request.getRemoteUser()%> has been logged out.<br/>
+        
+        
         <a href="/admin">admin</a>
         <a href="/user">user</a>
         <a href="/about">about</a>
+        <a href="/j_spring_security_logout">logout</a>
 
+        <p></p>
+        
+        getMaxInactiveInterval=<%=session.getMaxInactiveInterval()%>  s <br/>
+        getCreationTime=<%=new Date(session.getCreationTime())%> <br/>
+        getId=<%=session.getId()%> <br/>
+        getLastAccessedTime=<%=new Date(session.getLastAccessedTime())%> <br/>
+        
         <script src="/media/jquery/jquery.js"/>
     </body>
 </html>

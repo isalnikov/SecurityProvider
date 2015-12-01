@@ -6,6 +6,7 @@
 package com.isalnikov.config.auth;
 
 import java.io.IOException;
+import java.util.Arrays;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -16,9 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Service;
 
 /**
  *
@@ -30,26 +30,27 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
         setFilterProcessesUrl("/login");
         setUsernameParameter("username");
         setPasswordParameter("password");
+        
 
     }
 
-    @Autowired
-    @Override
-    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-        super.setAuthenticationManager(authenticationManager); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Autowired
-    @Override
-    public void setAuthenticationSuccessHandler(AuthenticationSuccessHandler successHandler) {
-        super.setAuthenticationSuccessHandler(successHandler);
-    }
-
-    @Autowired
-    @Override
-    public void setAuthenticationFailureHandler(AuthenticationFailureHandler failureHandler) {
-        super.setAuthenticationFailureHandler(failureHandler);
-    }
+//    @Autowired
+//    @Override
+//    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+//        super.setAuthenticationManager(authenticationManager); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Autowired
+//    @Override
+//    public void setAuthenticationSuccessHandler(AuthenticationSuccessHandler successHandler) {
+//        super.setAuthenticationSuccessHandler(successHandler);
+//    }
+//
+//    @Autowired
+//    @Override
+//    public void setAuthenticationFailureHandler(AuthenticationFailureHandler failureHandler) {
+//        super.setAuthenticationFailureHandler(failureHandler);
+//    }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
@@ -77,10 +78,9 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
         String userName = obtainUsername(request);
         String password = obtainPassword(request);
 
-        if (sslId != null) {
-            return new UserAuthorizationToken(userName, password, sslId);
-        }
-        return null;
+        UserAuthorizationToken token =  new UserAuthorizationToken(userName, password, sslId ,Arrays.asList(UserAuthority.ROLE_USER));
+        return token;//super.attemptAuthentication(request, response);
+        
     }
 
 }
