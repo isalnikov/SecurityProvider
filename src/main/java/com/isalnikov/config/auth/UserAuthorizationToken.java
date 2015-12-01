@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
- * @author Igor Salnikov <igor.salnikov@stoloto.ru>
+ * @author Igor Salnikov 
  */
 public class UserAuthorizationToken extends UsernamePasswordAuthenticationToken {
 

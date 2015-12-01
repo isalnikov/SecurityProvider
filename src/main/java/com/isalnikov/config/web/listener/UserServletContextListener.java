@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSessionListener;
 
 /**
  *
- * @author Igor Salnikov <igor.salnikov@stoloto.ru>
+ * @author Igor Salnikov 
  */
 
 @WebListener

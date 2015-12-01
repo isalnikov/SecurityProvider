@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  *
- * @author Igor Salnikov <igor.salnikov@stoloto.ru>
+ * @author Igor Salnikov 
  */
 
 @Configuration

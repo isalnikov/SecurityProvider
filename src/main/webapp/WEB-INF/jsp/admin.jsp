@@ -1,7 +1,7 @@
 <%-- 
     Document   : admin
     Created on : Nov 27, 2015, 4:53:33 PM
-    Author     : Igor Salnikov  <igor.salnikov@stoloto.ru>
+    Author     : Igor Salnikov  
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

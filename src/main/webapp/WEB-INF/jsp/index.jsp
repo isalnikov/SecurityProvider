@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : Nov 24, 2015, 10:51:32 AM
-    Author     : Igor Salnikov  <igor.salnikov@stoloto.ru>
+    Author     : Igor Salnikov  
 --%>
 
 <%@page import="java.util.Date"%>
