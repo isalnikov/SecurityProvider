@@ -59,13 +59,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      
         auth.authenticationProvider(authenticationProvider);
         
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("root").password(passwordEncoder().encode("root")).roles("USER", "ADMIN")
-//                .and()
-//                .withUser("user").password(passwordEncoder().encode("user")).roles("USER")
-//                .and()
-//                .passwordEncoder(passwordEncoder());
+        auth
+                .inMemoryAuthentication()
+                .withUser("root").password(passwordEncoder().encode("root")).roles("USER", "ADMIN")
+                .and()
+                .withUser("user").password(passwordEncoder().encode("user")).roles("USER")
+                .and()
+                .passwordEncoder(passwordEncoder());
 
     }
 
