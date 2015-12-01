@@ -30,7 +30,6 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
         setFilterProcessesUrl("/login");
         setUsernameParameter("username");
         setPasswordParameter("password");
-        
 
     }
 
@@ -51,7 +50,6 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
 //    public void setAuthenticationFailureHandler(AuthenticationFailureHandler failureHandler) {
 //        super.setAuthenticationFailureHandler(failureHandler);
 //    }
-
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
@@ -68,19 +66,18 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
 
         String sslId = request.getHeader("SSL_CLIENT_S_DN_CN");
 
-        if (sslId == null) {
-            sslId = "1000000415";
-        }
-
 //        if (request.getHeader("Authorization") == null) {
 //            return null; // no header found, continue on to other security filters
 //        }
         String userName = obtainUsername(request);
         String password = obtainPassword(request);
 
-        UserAuthorizationToken token =  new UserAuthorizationToken(userName, password, sslId ,Arrays.asList(UserAuthority.ROLE_USER));
-        return token;//super.attemptAuthentication(request, response);
-        
+        if (sslId != null) {
+            UserAuthorizationToken token = new UserAuthorizationToken(userName, password, sslId, Arrays.asList(UserAuthority.ROLE_USER));
+            return token;//super.attemptAuthentication(request, response);
+        }
+
+        return null;
     }
 
 }
