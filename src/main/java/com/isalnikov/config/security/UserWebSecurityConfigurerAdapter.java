@@ -25,17 +25,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Autowired
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("root").password("root").roles("USER", "ADMIN");
-          
-          
-        //auth.authenticationProvider(userAuthenticationProvider());
+                .withUser("root").password(passwordEncoder().encode("root")).roles("USER", "ADMIN")
+                .and()
+                .withUser("user").password(passwordEncoder().encode("user")).roles("USER")
+                .and()
+                .passwordEncoder(passwordEncoder());
 
+        //auth.authenticationProvider(userAuthenticationProvider());
     }
 
     @Override
@@ -43,14 +49,16 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 
         http
                 .authorizeRequests()
-                .antMatchers("/login","/about").permitAll()
+                .antMatchers("/","/login", "/about").permitAll()
+                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin() // default login jsp 
                 .permitAll()
                 .and()
-                .logout().permitAll();
-
+                .logout() //default logout jsp 
+                .permitAll();
 
     }
 

@@ -16,8 +16,8 @@
     <body>
         <h1>index</h1>
         <a href="/admin">admin</a>
-        <a href="/about">about</a>
         <a href="/user">user</a>
+        <a href="/about">about</a>
 
         <script src="/media/jquery/jquery.js"/>
     </body>
