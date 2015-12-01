@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.isalnikov.config;
+package com.isalnikov.config.web;
 
+import com.isalnikov.config.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -17,12 +18,12 @@ public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispat
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{WebConfig.class};
+        return new Class[]{SecurityConfig.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return null;
+        return new Class[]{WebConfig.class};
     }
 
     @Override

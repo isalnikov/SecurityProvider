@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isalnikov.config;
+package com.isalnikov.config.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,9 +22,6 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan({
-    "com.isalnikov.config"
-})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     private static final int CACHE_PERIOD = 31556926;//one year
@@ -32,6 +29,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
+        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/user").setViewName("user");
         registry.addViewController("/about").setViewName("about");
         registry.addViewController("/admin").setViewName("admin");
         // registry.setOrder(Ordered.HIGHEST_PRECEDENCE);

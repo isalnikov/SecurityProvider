@@ -11,11 +11,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" media="all" href="/media/css/user.css">
-        <title>about</title>
+        
+        <title>user</title>
     </head>
     <body>
-        <h1>about</h1>
+        <h1>user</h1>
          User <%=request.getRemoteUser()%> has been logged out.
-        <script src="/media/jquery/jquery.js"/>
+         
+         <script src="/media/jquery/jquery.js"/>
     </body>
 </html>
