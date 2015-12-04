@@ -5,47 +5,49 @@
  */
 package com.isalnikov.config.auth;
 
+import com.isalnikov.config.service.LoginService;
 import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Igor Salnikov 
+ * @author Igor Salnikov
  */
-@Component
-public class UserAuthenticationProvider implements  AuthenticationProvider {
+@Service
+public class UserAuthenticationProvider implements AuthenticationProvider {
 
-    
-
-    @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
-    
-            UserAuthorizationToken auth = (UserAuthorizationToken) authentication;
-
-      
-            String login = auth.getLogin();
-            String password = auth.getPassword();
-            String sslId = auth.getSslId();
-
-           //logger.info(gson.toJson(loginResponse));
-            Object principal = auth.getPrincipal();
-            UserAuthorizationToken authorizationToken = new UserAuthorizationToken(login, password, sslId, Arrays.asList(UserAuthority.ROLE_USER));
-            authorizationToken.setAuthenticated(true);
-            return authorizationToken;
-
-    
-        //throw new BadCredentialsException("Bad Credentials");
-    }
+    @Autowired
+    private LoginService loginService;
 
     @Override
     public boolean supports(Class<?> authentication) {
         return (UserAuthorizationToken.class.isAssignableFrom(authentication));
     }
 
- 
+    @Override
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+
+        UserAuthorizationToken auth = (UserAuthorizationToken) authentication;
+
+        String login = auth.getLogin();
+        String password = auth.getPassword();
+        String terminalId = auth.getTerminalId();
+
+        if (loginService.login(login, password, terminalId) == 0) {
+
+            Object principal = auth.getPrincipal();
+            UserAuthorizationToken authorizationToken = new UserAuthorizationToken(login, password, terminalId, Arrays.asList(UserAuthority.ROLE_USER));
+
+            return authorizationToken;
+        }
+
+        throw new BadCredentialsException("Invalid username or password");
+
+    }
 
 }

@@ -14,11 +14,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -26,34 +26,18 @@ import org.springframework.stereotype.Service;
  */
 public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilter {
 
+
+   
     public UserAuthorizationFilter() {
         setFilterProcessesUrl("/login");
-        setUsernameParameter("username");
-        setPasswordParameter("password");
-
     }
+    
+    
 
-//    @Autowired
-//    @Override
-//    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-//        super.setAuthenticationManager(authenticationManager); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Autowired
-//    @Override
-//    public void setAuthenticationSuccessHandler(AuthenticationSuccessHandler successHandler) {
-//        super.setAuthenticationSuccessHandler(successHandler);
-//    }
-//
-//    @Autowired
-//    @Override
-//    public void setAuthenticationFailureHandler(AuthenticationFailureHandler failureHandler) {
-//        super.setAuthenticationFailureHandler(failureHandler);
-//    }
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
-        if ("POST".equals(request.getMethod())) {
+        if (RequestMethod.POST.name().equals(request.getMethod())) {
             super.doFilter(req, resp, chain);
         } else {
             chain.doFilter(req, resp);
@@ -64,7 +48,7 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
-        String sslId = request.getHeader("SSL_CLIENT_S_DN_CN");
+        String terminalId = request.getHeader("Authorization");
 
 //        if (request.getHeader("Authorization") == null) {
 //            return null; // no header found, continue on to other security filters
@@ -72,12 +56,14 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
         String userName = obtainUsername(request);
         String password = obtainPassword(request);
 
-        if (sslId != null) {
-            UserAuthorizationToken token = new UserAuthorizationToken(userName, password, sslId, Arrays.asList(UserAuthority.ROLE_USER));
-            return token;//super.attemptAuthentication(request, response);
+        if (terminalId != null) {
+            UserAuthorizationToken token = new UserAuthorizationToken(userName, password, terminalId, Arrays.asList(UserAuthority.ROLE_USER));
+
+       
+            return super.getAuthenticationManager().authenticate(token);
         }
 
-        return null;
+         throw new BadCredentialsException("Invalid username or password");
     }
 
 }

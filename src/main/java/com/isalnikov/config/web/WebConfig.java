@@ -33,6 +33,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/user").setViewName("user");
         registry.addViewController("/about").setViewName("about");
         registry.addViewController("/admin").setViewName("admin");
+        registry.addViewController("/invalidSession").setViewName("invalidSession");
         // registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
@@ -44,7 +45,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/favicon.ico").addResourceLocations("/favicon.ico").setCachePeriod(CACHE_PERIOD);
-        registry.addResourceHandler("/media/**").addResourceLocations("/media/").setCachePeriod(CACHE_PERIOD);
+        //registry.addResourceHandler("/media/**").addResourceLocations("/media/").setCachePeriod(CACHE_PERIOD);
+        registry.addResourceHandler("/media/**/*.{js,html,css}").addResourceLocations("/media/").setCachePeriod(CACHE_PERIOD);
     }
     
     @Bean(name = "jspViewResolver")

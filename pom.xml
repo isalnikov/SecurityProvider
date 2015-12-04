@@ -120,9 +120,23 @@
         </dependency>
         
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring.security}</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>jsr250-api</artifactId>
             <version>1.0</version>
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security}</version>
         </dependency>
         
         <!-- Jackson JSON Mapper -->
@@ -163,6 +177,14 @@
             <scope>test</scope>
         </dependency>
         
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <version>4.0.3.RELEASE</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        
         <!-- CGLIB is required to process @Configuration classes -->  
         <dependency>  
             <groupId>cglib</groupId>  
@@ -181,12 +203,8 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4jVersion}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-ldap</artifactId>
-            <version>3.2.5.RELEASE</version>
-            <type>jar</type>
-        </dependency>
+
+
     </dependencies>
     
     <build>

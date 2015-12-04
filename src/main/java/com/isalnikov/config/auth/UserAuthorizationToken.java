@@ -15,28 +15,28 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class UserAuthorizationToken extends UsernamePasswordAuthenticationToken {
 
-    private final String sslId;
+    private final String terminalId;
     private final String login;
     private final String password;
 
-    public UserAuthorizationToken(String username, String password, String sslId) {
+    public UserAuthorizationToken(String username, String password, String terminalId) {
         super(username, password, null);
         this.login = username;
         this.password = password;
-        this.sslId = sslId;
+        this.terminalId = terminalId;
 
     }
 
-    public UserAuthorizationToken(String username, String password, String sslId, Collection<? extends GrantedAuthority> authorities) {
+    public UserAuthorizationToken(String username, String password, String terminalId, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.login = username;
         this.password = password;
-        this.sslId = sslId;
+        this.terminalId = terminalId;
 
     }
 
-    public String getSslId() {
-        return sslId;
+    public String getTerminalId() {
+        return terminalId;
     }
 
     public String getLogin() {

@@ -23,7 +23,9 @@
         <a href="/admin">admin</a>
         <a href="/user">user</a>
         <a href="/about">about</a>
-        <a href="/j_spring_security_logout">logout</a>
+        <a href="/csrf">csrf</a>
+        <a href="/logout">logout</a>
+        <!--<a href="/j_spring_security_logout">logout</a>-->
 
         <p></p>
         
