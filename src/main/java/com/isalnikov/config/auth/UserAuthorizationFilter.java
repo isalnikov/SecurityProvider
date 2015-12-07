@@ -49,6 +49,8 @@ public class UserAuthorizationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
         String terminalId = request.getHeader("Authorization");
+        
+        terminalId = "1";
 
 //        if (request.getHeader("Authorization") == null) {
 //            return null; // no header found, continue on to other security filters

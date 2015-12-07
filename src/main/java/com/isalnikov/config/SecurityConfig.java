@@ -90,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         http
-                .sessionManagement().maximumSessions(1).and().invalidSessionUrl("/invalidSession");
+                .sessionManagement().maximumSessions(1).and().invalidSessionUrl("/login");
 
 //        http
 //                .headers()
