@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page trimDirectiveWhitespaces="true" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +17,11 @@
     </head>
     <body>
         <h1>about</h1>
-         User <%=request.getRemoteUser()%> has been logged out.
-        <script src="/media/jquery/jquery.js"/>
-    </body>
+
+        ${pageContext.response.locale}</p>
+        <spring:message code="loginController.login" /></p>
+
+User <%=request.getRemoteUser()%> has been logged out.
+<script src="/media/jquery/jquery.js"/>
+</body>
 </html>

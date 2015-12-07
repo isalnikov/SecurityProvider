@@ -44,7 +44,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
     "com.isalnikov.config.auth",
     "com.isalnikov.config.hendler",
     "com.isalnikov.config.security",
-    "com.isalnikov.config.web"
+    "com.isalnikov.config.web",
+    "com.isalnikov.controller",
+    "com.isalnikov.utils"
 })
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -109,7 +111,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/media/**/*.{js,html,css}")
-                .antMatchers("/favicon.ico", "/about")
+                .antMatchers("/favicon.ico", "/about","/message/**")
                 .antMatchers("/", "/invalidSession");
     }
 }
