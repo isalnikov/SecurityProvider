@@ -79,7 +79,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setBasenames("/WEB-INF/messages/messages");
+        messageSource.setBasenames("message");
         messageSource.setCacheSeconds(5);
         messageSource.setFallbackToSystemLocale(false);// ???
         

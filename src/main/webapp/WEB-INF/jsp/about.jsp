@@ -19,7 +19,7 @@
         <h1>about</h1>
 
         ${pageContext.response.locale}</p>
-        <spring:message code="loginController.login" /></p>
+        <spring:message code="hello" /></p>
 
 User <%=request.getRemoteUser()%> has been logged out.
 <script src="/media/jquery/jquery.js"/>
