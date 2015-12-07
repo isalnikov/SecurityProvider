@@ -6,9 +6,11 @@
 package com.isalnikov.utils;
 
 import java.util.Locale;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 /**
  *
@@ -20,13 +22,22 @@ public class MessageHelper {
     @Autowired
     private MessageSource messageSource;
 
-    public String getMessage(Locale Locale, String... params) {
+    public String getMessage(Locale Locale, Object... params) {
 
-        String result = messageSource.getMessage(params[0], new Object[]{}, Locale);
+        Assert.state(! ( Objects.isNull(params) || params.length == 0 || params[0] == null || ((String) params[0]).isEmpty()), "MessageHelper getMessage -> params is null");
+
+        Object[] args = new Object[]{};
+
+        if (params.length > 1) {
+            args = new Object[params.length - 1];
+            System.arraycopy(params, 1, args, 0, params.length - 1);
+        }
+
+        String result = messageSource.getMessage((String) params[0], args, Locale);
         return result;
     }
 
-    public String getMessage(String... params) {
+    public String getMessage(Object... params) {
         return getMessage(Locale.getDefault(), params);
     }
 
