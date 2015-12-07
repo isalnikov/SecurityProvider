@@ -6,8 +6,6 @@
 package com.isalnikov.config;
 
 import com.isalnikov.config.hendler.BeanHendlerFactoryPostProcessor;
-import com.isalnikov.utils.MessageHelper;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.MessageHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

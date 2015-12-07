@@ -34,7 +34,7 @@ public class AppConfigTest {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setBasenames("message");
+        messageSource.setBasenames("classpath:message");
         messageSource.setCacheSeconds(5);
         //messageSource.setFallbackToSystemLocale(false);// ???
         return messageSource;
