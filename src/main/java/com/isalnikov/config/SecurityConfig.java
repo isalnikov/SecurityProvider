@@ -75,6 +75,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
+                
+               //http://www.webremeslo.ru/html/glava10.html
+                .antMatchers("/page**").permitAll()
+                
                 .antMatchers("/login").permitAll()
                 .antMatchers("/user").hasRole("USER")
                 .antMatchers("/csrf").hasRole("USER")
