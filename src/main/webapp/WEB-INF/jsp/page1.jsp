@@ -10,8 +10,8 @@
     <head>
         <meta http-equiv="refresh" content="10;URL=/page2" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv ="Page-Enter" Content="BlendTrans(Duration=2.0, Transition=7)">
-        <meta http-equiv ="Page-Exit " Content="RevealTrans(Duration=3.0, Transition=7)">
+        <meta http-equiv ="Page-Enter" Content="blendTrans(Duration=2.0)">
+        <meta http-equiv ="Page-Exit " Content="revealTrans(Duration=3.0, Transition=7)">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
