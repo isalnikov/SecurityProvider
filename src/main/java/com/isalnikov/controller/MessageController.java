@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author Igor Salnikov <igor.salnikov@stoloto.ru>
+ * @author Igor Salnikov 
  */
 @Controller
 public class MessageController {
