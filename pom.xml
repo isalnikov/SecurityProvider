@@ -29,7 +29,7 @@
         <spring.version>4.1.1.RELEASE</spring.version>
         <spring.security>4.0.0.RELEASE</spring.security>
         <slf4jVersion>1.7.12</slf4jVersion>
-        <jackson.version>2.6.1</jackson.version>
+        <jackson.version>[2.9.10.1,)</jackson.version>
     </properties>
     
     <dependencies>
